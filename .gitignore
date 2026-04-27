@@ -6,3 +6,6 @@ dist/
 *.log
 .vscode/
 .idea/
+
+# 外部LP参考資料（著作権の都合で公開リポジトリには push しない）
+references/
