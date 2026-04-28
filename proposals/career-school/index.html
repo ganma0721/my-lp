@@ -263,6 +263,81 @@ section{padding:88px 0}
 }
 .section-title em{color:var(--primary);font-style:normal;font-size:1.5em}
 
+/* 体験レッスン内容（プレゼントもらう方法 / Empathyの直前） */
+.trial-flow{
+  background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);
+  position:relative;overflow:hidden;
+}
+.trial-flow__lead{
+  text-align:center;font-size:1rem;color:var(--sub);
+  max-width:680px;margin:0 auto 48px;line-height:1.85;
+}
+.trial-flow__lead strong{
+  color:var(--ink);background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
+}
+.trial-flow__cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+  max-width:920px;margin:0 auto;
+}
+.trial-card{
+  position:relative;
+  background:#fff;
+  border:2px solid var(--line);border-radius:24px;
+  padding:40px 28px 32px;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.trial-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 48px rgba(46,42,40,.10);
+  border-color:var(--primary);
+}
+.trial-card__num{
+  position:absolute;top:-22px;left:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:54px;height:54px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  font-size:1.1rem;font-weight:900;letter-spacing:.04em;
+  box-shadow:0 10px 22px rgba(194,84,63,.32);
+  font-family:"Helvetica Neue","Hiragino Sans",sans-serif;
+}
+.trial-card__check{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--mark);color:var(--ink);
+  font-size:.78rem;font-weight:900;letter-spacing:.04em;
+  padding:4px 12px;border-radius:6px;
+  margin:0 0 14px;
+}
+.trial-card__title{
+  font-size:clamp(1.15rem,2vw,1.35rem);
+  font-weight:900;line-height:1.55;margin:0 0 18px;color:var(--ink);
+  letter-spacing:-.01em;
+}
+.trial-card__title em{
+  color:var(--primary);font-style:normal;
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
+}
+.trial-card__chips{
+  list-style:none;padding:0;margin:0 0 18px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.trial-card__chips li{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;border:2px solid var(--primary);
+  color:var(--primary);font-weight:900;font-size:.85rem;
+  padding:6px 14px;border-radius:999px;
+}
+.trial-card__chips li::before{
+  content:"";display:inline-block;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--primary);
+  background-image:linear-gradient(135deg,transparent 35%,#fff 35%,#fff 45%,transparent 45%);
+  position:relative;
+}
+.trial-card__body{
+  font-size:.92rem;line-height:1.85;color:var(--sub);margin:0;
+}
+.trial-card__body strong{color:var(--ink)}
+
 /* 共感セクション（左画像・右テキストの大型レイアウト） */
 .empathy{background:#fff}
 .empathy__inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:64px;text-align:left}
@@ -323,8 +398,7 @@ section{padding:88px 0}
   color:#aaa;font-size:.7rem;text-align:center;padding:8px;
   border:1px dashed #c4b8a6;background:var(--highlight);
 }
-.skill-card__name{font-weight:900;margin:0 0 4px;font-size:1rem}
-.skill-card__sub{font-size:.82rem;color:var(--sub);margin:0}
+.skill-card__name{font-weight:900;margin:0;font-size:1rem}
 
 /* ストーリー（縦に長い、画像主役） */
 .story{background:var(--bg)}
@@ -705,6 +779,11 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .hero__visual-blob{width:180px;height:180px;top:-40px;right:-40px}
   .hero__visual-blob--bottom{display:none}
 
+  .trial-flow__cards{grid-template-columns:1fr;gap:24px}
+  .trial-card{padding:36px 22px 26px}
+  .trial-card__num{width:46px;height:46px;font-size:1rem;top:-18px;left:18px}
+  .trial-card__title{font-size:1.1rem}
+
   .empathy__inner,.benefit__row,.benefit__row:nth-child(even),.story__chapter,.story__chapter:nth-child(even){grid-template-columns:1fr;gap:24px}
   .benefit__row:nth-child(even) .benefit__visual,.story__chapter:nth-child(even) .story__visual{order:0}
   .empathy__heading{font-size:1.15rem}
@@ -811,7 +890,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           出会う<em>45分</em>。
         </h1>
         <p class="hero__lead">
-          Webデザイン・動画編集・ライティングなど50のスキル。<br>
+          Webデザイン・動画編集・ライティングなど50+スキル。<br>
           気になる1つを、無料体験レッスンで試してみる。<br>
           スマホ参加OK・勧誘なし。
         </p>
@@ -841,6 +920,47 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           </div>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  ================================================================
+  体験レッスン内容（=プレゼントをもらう方法）
+  - 無料体験参加で抽選応募完了 → どんな45分か説明
+  ================================================================
+-->
+<section class="trial-flow" id="trial-flow">
+  <div class="container">
+    <span class="section-eyebrow reveal">CONTENTS</span>
+    <h2 class="section-title reveal">
+      「理想の働き方」を見つけたいなら<br>
+      <em>参加</em>しないなんてもったいない！
+    </h2>
+    <p class="trial-flow__lead reveal">
+      無料体験レッスン参加で<strong>豪華プレゼント抽選</strong>に応募完了。<br>
+      45分の中身は、この2本立てです。
+    </p>
+
+    <div class="trial-flow__cards">
+      <article class="trial-card reveal">
+        <span class="trial-card__num">01</span>
+        <span class="trial-card__check">✓ Check!</span>
+        <h3 class="trial-card__title">人気のWebスキル<br><em>3つをプチ体験</em></h3>
+        <ul class="trial-card__chips">
+          <li>デザイン</li>
+          <li>ライティング</li>
+          <li>マーケティング</li>
+        </ul>
+        <p class="trial-card__body">プロ講師がリアル講義。「私もできるかも」が、その場で掴めます。</p>
+      </article>
+
+      <article class="trial-card reveal">
+        <span class="trial-card__num">02</span>
+        <span class="trial-card__check">✓ Check!</span>
+        <h3 class="trial-card__title">キャリアカウンセリングで<br><em>お悩み相談！</em></h3>
+        <p class="trial-card__body">「私に合うスキルは？」「副業 or 転職どっち？」「補助金は使える？」——気になることを<strong>1on1で全部</strong>聞けます。</p>
+      </article>
     </div>
   </div>
 </section>
@@ -886,11 +1006,11 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 
     <div class="benefit__row">
       <div class="benefit__visual reveal">
-        <img src="./assets/img/D-01.png" alt="50のスキルを象徴する静物" loading="lazy">
+        <img src="./assets/img/D-01.png" alt="50+スキルを象徴する静物" loading="lazy">
       </div>
       <div class="reveal">
         <span class="benefit__num">REASON 01</span>
-        <h3 class="benefit__title">50のスキルが、月額固定で受け放題</h3>
+        <h3 class="benefit__title">50+スキルが、月額固定で受け放題</h3>
         <p class="benefit__desc">Webデザイン・ライティング・マーケ・動画編集・SNS運用 ── やりたい複数のコースを「先に試して、合うものを選ぶ」がこのスクールの常識。「自分に何が合うか分からない」を最初の壁にしません。</p>
       </div>
     </div>
@@ -923,48 +1043,40 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 <section class="skills">
   <div class="container">
     <span class="section-eyebrow reveal">SKILLS</span>
-    <h2 class="section-title reveal">在宅で「指名される人」になれる<br>50 のスキル</h2>
+    <h2 class="section-title reveal">在宅で「指名される人」になれる<br>50+スキル</h2>
 
     <div class="skills__grid">
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-01 Webマーケ)</div></div>
         <h3 class="skill-card__name">Webマーケ</h3>
-        <p class="skill-card__sub">月収 +10〜25万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><img src="./assets/img/E-02.png" alt="Webデザイン静物"></div>
         <h3 class="skill-card__name">Webデザイン</h3>
-        <p class="skill-card__sub">月収 +8〜15万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><img src="./assets/img/E-03.png" alt="SNS運用静物"></div>
         <h3 class="skill-card__name">SNS運用</h3>
-        <p class="skill-card__sub">月収 +6〜18万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-04 ライティング)</div></div>
         <h3 class="skill-card__name">ライティング</h3>
-        <p class="skill-card__sub">月収 +5〜12万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-05 動画編集)</div></div>
         <h3 class="skill-card__name">動画編集</h3>
-        <p class="skill-card__sub">月収 +6〜18万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-06 写真)</div></div>
         <h3 class="skill-card__name">写真・映像</h3>
-        <p class="skill-card__sub">月収 +4〜10万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-07 イラスト)</div></div>
         <h3 class="skill-card__name">イラスト</h3>
-        <p class="skill-card__sub">月収 +4〜10万円</p>
       </article>
       <article class="skill-card reveal">
         <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-08 他32コース)</div></div>
         <h3 class="skill-card__name">他32コース</h3>
-        <p class="skill-card__sub">追加料金なし</p>
       </article>
     </div>
   </div>
@@ -1293,14 +1405,14 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
         <ul class="prize-list">
           <li class="prize-card" data-prize-id="hawaii">
             <div class="prize-card__media">
-              <div class="prize-card__placeholder">画像予定<br>(prize-hawaii.png)<br>ハワイ旅行イメージ</div>
+              <img src="./assets/img/prize-hawaii.png" alt="ハワイ旅行" loading="lazy">
               <span class="prize-card__qty">1名様</span>
             </div>
             <p class="prize-card__name">ハワイ旅行</p>
           </li>
           <li class="prize-card" data-prize-id="macbook">
             <div class="prize-card__media">
-              <div class="prize-card__placeholder">画像予定<br>(prize-macbook.png)<br>MacBook Pro</div>
+              <img src="./assets/img/prize-macbook.png" alt="MacBook Pro" loading="lazy">
               <span class="prize-card__qty">1名様</span>
             </div>
             <p class="prize-card__name">MacBook Pro</p>
