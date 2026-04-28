@@ -458,18 +458,27 @@ section{padding:88px 0}
 
 /* カリキュラム */
 .curriculum{background:var(--bg)}
-.curriculum__steps{position:relative;max-width:760px;margin:0 auto;padding:0 16px}
-.curriculum__steps::before{
-  content:"";position:absolute;left:32px;top:32px;bottom:32px;width:2px;
-  background:var(--primary);
+.curriculum__lead{
+  text-align:center;font-size:1rem;color:var(--sub);
+  max-width:680px;margin:0 auto 40px;line-height:1.85;
 }
-.step{position:relative;padding:24px 0 24px 80px}
-.step__num{
-  position:absolute;left:0;top:24px;width:64px;height:64px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--primary);color:var(--primary);
-  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem;z-index:1;
+.curriculum__lead strong{
+  color:var(--ink);
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
 }
-.step__title{font-size:1.15rem;font-weight:900;margin:0 0 8px;line-height:1.5}
+.curriculum__visual{
+  max-width:920px;margin:0 auto;
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 24px 48px rgba(46,42,40,.10);
+  background:#fff;
+}
+.curriculum__visual img{
+  width:100%;height:auto;display:block;
+}
+.curriculum__note{
+  text-align:center;font-size:.78rem;color:var(--sub);
+  margin:24px 0 0;
+}
 
 /* 補助金 / SUBSIDY（旧 PRICING を置換） */
 .subsidy{
@@ -808,9 +817,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .skills__grid{grid-template-columns:repeat(2,1fr)}
   .voice-card{grid-template-columns:72px 1fr;gap:14px;padding:18px}
   .voice-card__photo{width:72px;height:72px}
-  .step{padding-left:64px}
-  .step__num{width:48px;height:48px;font-size:1rem}
-  .curriculum__steps::before{left:24px}
+  .curriculum__visual{border-radius:18px}
   .subsidy__hero{padding:28px 20px 22px}
   .subsidy__blocks{grid-template-columns:1fr;gap:14px;margin-bottom:24px}
   .subsidy-card{padding:22px 20px}
@@ -1227,34 +1234,26 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   </div>
 </section>
 
-<!-- カリキュラム -->
+<!-- カリキュラム（学べるコース一覧 / 画像で訴求） -->
 <section class="curriculum">
   <div class="container">
     <span class="section-eyebrow reveal">CURRICULUM</span>
-    <h2 class="section-title reveal">「学んで終わり」にしない<br>4ステップの実戦カリキュラム</h2>
+    <h2 class="section-title reveal">
+      豊富なコースから、<br>
+      「<em>私らしい働き方</em>」を見つける
+    </h2>
+    <p class="curriculum__lead reveal">
+      Webデザイン・ライティング・動画編集・マーケティング…<br>
+      <strong>50+のコースから選び放題</strong>。「これかも」が必ず見つかります。
+    </p>
 
-    <div class="curriculum__steps">
-      <div class="step reveal">
-        <div class="step__num">1</div>
-        <h3 class="step__title">適性診断 + コース選定（1週間）</h3>
-        <p>専属コーチと一緒に、あなたの強み・ライフスタイル・目標から、最適なメインコースを選定。「やみくもに学ぶ」を防ぎます。</p>
-      </div>
-      <div class="step reveal">
-        <div class="step__num">2</div>
-        <h3 class="step__title">基礎インプット（1〜2ヶ月）</h3>
-        <p>動画講座 + 課題提出 + コーチ添削で基礎を固めます。1日30分でも進められる、5〜10分の短尺動画設計。</p>
-      </div>
-      <div class="step reveal">
-        <div class="step__num">3</div>
-        <h3 class="step__title">模擬案件で実戦練習（2〜3ヶ月）</h3>
-        <p>仮想クライアントの案件を解いてポートフォリオ化。コーチがプロ目線でレビュー。「納品できるレベル」まで仕上げます。</p>
-      </div>
-      <div class="step reveal">
-        <div class="step__num">4</div>
-        <h3 class="step__title">案件獲得サポート（卒業まで）</h3>
-        <p>営業文の添削、提案書テンプレ、案件紹介プラットフォームへのアクセス。「初案件獲得まで」を伴走します。</p>
-      </div>
+    <div class="curriculum__visual reveal">
+      <img src="./assets/img/curriculum-courses.png"
+           alt="学べるコース一覧（UXデザイン / Webデザイン / Webマーケティング / ライター / 広報・PR / Pr動画編集 / Ae動画制作 / SNSマーケティング / 広告運用 / AIイラストレーター / カメラ・写真 / Webディレクター ほか）"
+           loading="lazy">
     </div>
+
+    <p class="curriculum__note reveal">※ 表示は一例です。受講開始後はすべてのコースを定額で受講可能です。</p>
   </div>
 </section>
 
