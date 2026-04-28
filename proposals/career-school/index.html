@@ -138,55 +138,7 @@ a{color:inherit;text-decoration:none}
   background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
 }
 .hero__lead{font-size:1rem;color:var(--sub);margin:0 0 28px}
-.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;justify-content:center}
-
-/* FV内 当日プレゼント枠（campaign schedule から日替わりで差し替え想定） */
-.hero__prize{
-  display:inline-flex;align-items:center;gap:18px;
-  padding:16px 22px;
-  background:#fff;
-  border:2px solid var(--primary);
-  border-radius:20px;
-  box-shadow:0 12px 28px rgba(194,84,63,.15);
-  text-align:left;
-  max-width:520px;width:100%;
-  margin:0 auto;
-  transition:transform .2s ease,box-shadow .2s ease;
-  font-family:inherit;color:inherit;cursor:pointer;
-  -webkit-appearance:none;appearance:none;
-}
-.hero__prize:hover{
-  transform:translateY(-2px);
-  box-shadow:0 18px 36px rgba(194,84,63,.22);
-}
-.hero__prize-media{
-  flex-shrink:0;
-  width:88px;height:88px;
-  border-radius:14px;overflow:hidden;
-  background:linear-gradient(135deg,#FFE9DE,#FFD9CE);
-  display:flex;align-items:center;justify-content:center;
-}
-.hero__prize-media img{width:100%;height:100%;object-fit:cover;display:block}
-.hero__prize-placeholder{
-  font-size:2rem;line-height:1;
-}
-.hero__prize-info{flex:1;min-width:0}
-.hero__prize-label{
-  display:inline-block;
-  font-size:.72rem;font-weight:900;letter-spacing:.06em;
-  color:var(--primary);
-  background:var(--mark);
-  padding:2px 8px;border-radius:4px;
-  margin-bottom:6px;
-}
-.hero__prize-name{
-  font-size:1.1rem;font-weight:900;line-height:1.4;color:var(--ink);
-  margin:0 0 4px;letter-spacing:-.01em;
-}
-.hero__prize-qty{
-  font-size:.78rem;font-weight:700;color:var(--sub);margin:0;
-}
-.hero__prize-qty strong{color:var(--primary)}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:0;justify-content:center}
 
 .hero__visual{
   position:relative;width:100%;max-width:960px;
@@ -265,29 +217,13 @@ section{padding:88px 0}
 }
 .section-title em{color:var(--primary);font-style:normal;font-size:1.5em}
 
-/* FV内アコーディオン（プレゼント詳細） */
-.hero__detail-toggle{
-  display:inline-flex;align-items:center;gap:8px;
-  background:transparent;color:var(--ink);
-  border:2px solid var(--ink);border-radius:999px;
-  padding:14px 28px;font-weight:700;font-size:.95rem;cursor:pointer;
-  transition:transform .15s ease,background .2s ease,color .2s ease;
-  font-family:inherit;
-}
-.hero__detail-toggle:hover{transform:translateY(-2px);background:var(--ink);color:#fff}
-.hero__detail-toggle .chev{
-  display:inline-block;transition:transform .25s ease;font-size:.8rem;
-}
-.hero__detail-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
-
+/* FV内 プレゼント詳細パネル（常時表示） */
 .hero__detail-panel{
-  margin:24px auto 0;max-width:720px;
+  margin:32px auto 0;max-width:760px;
   background:#fff;border:2px solid var(--primary);border-radius:24px;
   padding:32px 28px;text-align:left;
   box-shadow:0 24px 48px rgba(194,84,63,.18);
-  overflow:hidden;
 }
-.hero__detail-panel[hidden]{display:none}
 .hero__detail-panel-title{
   text-align:center;font-size:1.15rem;font-weight:900;
   color:var(--ink);margin:0 0 18px;letter-spacing:-.01em;
@@ -413,81 +349,6 @@ section{padding:88px 0}
 .detail-step--highlight .detail-step__num{background:var(--ink)}
 
 .hero__detail-cta{text-align:center;margin-top:8px}
-
-/* 体験レッスン内容（プレゼントもらう方法 / Empathyの直前） */
-.trial-flow{
-  background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);
-  position:relative;overflow:hidden;
-}
-.trial-flow__lead{
-  text-align:center;font-size:1rem;color:var(--sub);
-  max-width:680px;margin:0 auto 48px;line-height:1.85;
-}
-.trial-flow__lead strong{
-  color:var(--ink);background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
-}
-.trial-flow__cards{
-  display:grid;grid-template-columns:1fr 1fr;gap:28px;
-  max-width:920px;margin:0 auto;
-}
-.trial-card{
-  position:relative;
-  background:#fff;
-  border:2px solid var(--line);border-radius:24px;
-  padding:40px 28px 32px;
-  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.trial-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 24px 48px rgba(46,42,40,.10);
-  border-color:var(--primary);
-}
-.trial-card__num{
-  position:absolute;top:-22px;left:24px;
-  display:inline-flex;align-items:center;justify-content:center;
-  width:54px;height:54px;border-radius:50%;
-  background:var(--primary);color:#fff;
-  font-size:1.1rem;font-weight:900;letter-spacing:.04em;
-  box-shadow:0 10px 22px rgba(194,84,63,.32);
-  font-family:"Helvetica Neue","Hiragino Sans",sans-serif;
-}
-.trial-card__check{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--mark);color:var(--ink);
-  font-size:.78rem;font-weight:900;letter-spacing:.04em;
-  padding:4px 12px;border-radius:6px;
-  margin:0 0 14px;
-}
-.trial-card__title{
-  font-size:clamp(1.15rem,2vw,1.35rem);
-  font-weight:900;line-height:1.55;margin:0 0 18px;color:var(--ink);
-  letter-spacing:-.01em;
-}
-.trial-card__title em{
-  color:var(--primary);font-style:normal;
-  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
-}
-.trial-card__chips{
-  list-style:none;padding:0;margin:0 0 18px;
-  display:flex;flex-wrap:wrap;gap:8px;
-}
-.trial-card__chips li{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#fff;border:2px solid var(--primary);
-  color:var(--primary);font-weight:900;font-size:.85rem;
-  padding:6px 14px;border-radius:999px;
-}
-.trial-card__chips li::before{
-  content:"";display:inline-block;
-  width:14px;height:14px;border-radius:50%;
-  background:var(--primary);
-  background-image:linear-gradient(135deg,transparent 35%,#fff 35%,#fff 45%,transparent 45%);
-  position:relative;
-}
-.trial-card__body{
-  font-size:.92rem;line-height:1.85;color:var(--sub);margin:0;
-}
-.trial-card__body strong{color:var(--ink)}
 
 /* 共感セクション（左画像・右テキストの大型レイアウト） */
 .empathy{background:#fff}
@@ -920,20 +781,10 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .hero__lead{font-size:.92rem}
   .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
   .hero__cta .btn{width:100%}
-  .hero__prize{padding:12px 14px;gap:14px}
-  .hero__prize-media{width:72px;height:72px;border-radius:12px}
-  .hero__prize-placeholder{font-size:1.6rem}
-  .hero__prize-name{font-size:.98rem}
-  .hero__prize-qty{font-size:.72rem}
   .hero__video-frame{aspect-ratio:16/9;border-radius:18px}
   .hero__video-badge{font-size:.7rem;padding:6px 12px;top:12px;left:12px}
   .hero__visual-blob{width:180px;height:180px;top:-40px;right:-40px}
   .hero__visual-blob--bottom{display:none}
-
-  .trial-flow__cards{grid-template-columns:1fr;gap:24px}
-  .trial-card{padding:36px 22px 26px}
-  .trial-card__num{width:46px;height:46px;font-size:1rem;top:-18px;left:18px}
-  .trial-card__title{font-size:1.1rem}
 
   .hero__detail-panel{padding:22px 18px;border-radius:20px;margin-top:20px}
   .hero__detail-panel-title{font-size:.95rem;margin-bottom:18px;line-height:1.7}
@@ -1061,37 +912,11 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
         </p>
         <div class="hero__cta">
           <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験レッスンに参加する</a>
-          <button type="button" class="hero__detail-toggle"
-                  aria-expanded="false" aria-controls="prize-detail">
-            🎁 プレゼント詳細を見る <span class="chev" aria-hidden="true">▼</span>
-          </button>
         </div>
-
-        <!--
-          FV内・当日プレゼント枠
-          - WP移植時: $cp = shelikes_get_current_campaign(); で取得した値を data-* 属性と表示テキストに流し込む
-          - data-campaign-id は inc/shelikes-campaigns.php の id と一致させる
-          - 画像ファイル名は prize-{id}.png 規約（assets/img/ 直下）
-        -->
-        <button type="button" class="hero__prize reveal"
-           data-campaign-id="ipad-pencil"
-           data-prize="iPad &amp; Apple Pencil"
-           data-deadline="2026-04-30T21:00:00+09:00"
-           aria-expanded="false" aria-controls="prize-detail"
-           data-detail-toggle>
-          <div class="hero__prize-media">
-            <img src="./assets/img/prize-ipad.png" alt="iPad &amp; Apple Pencil" loading="eager">
-          </div>
-          <div class="hero__prize-info">
-            <span class="hero__prize-label">本日のプレゼント</span>
-            <p class="hero__prize-name">iPad &amp; Apple Pencil</p>
-            <p class="hero__prize-qty">無料体験参加で <strong>1名様</strong> に当たる</p>
-          </div>
-        </button>
       </div>
 
-      <!-- プレゼント詳細アコーディオンパネル（クリックで開閉） -->
-      <div class="hero__detail-panel reveal" id="prize-detail" hidden>
+      <!-- プレゼント詳細パネル（常時表示） -->
+      <div class="hero__detail-panel reveal" id="prize-detail">
         <h3 class="hero__detail-panel-title">
           <span class="step-tag">📩 申し込み</span>で<strong>MacBook &amp; ハワイ旅行</strong>が当たる！<br>
           <span class="step-tag step-tag--bonus">⚡ さらにWチャンス</span>で<strong>iPad &amp; Apple Pencil</strong>も当たる！
@@ -1163,47 +988,6 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験に申し込む</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!--
-  ================================================================
-  体験レッスン内容（=プレゼントをもらう方法）
-  - 無料体験参加で抽選応募完了 → どんな内容か説明
-  ================================================================
--->
-<section class="trial-flow" id="trial-flow">
-  <div class="container">
-    <span class="section-eyebrow reveal">CONTENTS</span>
-    <h2 class="section-title reveal">
-      「理想の働き方」を見つけたいなら<br>
-      <em>参加</em>しないなんてもったいない！
-    </h2>
-    <p class="trial-flow__lead reveal">
-      無料体験レッスン参加で<strong>豪華プレゼント抽選</strong>に応募完了。<br>
-      体験レッスンの中身は、この2本立てです。
-    </p>
-
-    <div class="trial-flow__cards">
-      <article class="trial-card reveal">
-        <span class="trial-card__num">01</span>
-        <span class="trial-card__check">✓ Check!</span>
-        <h3 class="trial-card__title">人気のWebスキル<br><em>3つをプチ体験</em></h3>
-        <ul class="trial-card__chips">
-          <li>デザイン</li>
-          <li>ライティング</li>
-          <li>マーケティング</li>
-        </ul>
-        <p class="trial-card__body">プロ講師がリアル講義。「私もできるかも」が、その場で掴めます。</p>
-      </article>
-
-      <article class="trial-card reveal">
-        <span class="trial-card__num">02</span>
-        <span class="trial-card__check">✓ Check!</span>
-        <h3 class="trial-card__title">キャリアカウンセリングで<br><em>お悩み相談！</em></h3>
-        <p class="trial-card__body">「私に合うスキルは？」「副業 or 転職どっち？」「補助金は使える？」——気になることを<strong>1on1で全部</strong>聞けます。</p>
-      </article>
     </div>
   </div>
 </section>
@@ -1722,32 +1506,6 @@ document.querySelectorAll('a[data-cta="affiliate"]').forEach(a => {
   a.target = '_blank';
   a.rel = 'noopener sponsored';
 });
-
-/* プレゼント詳細アコーディオン（複数トリガー対応） */
-(function(){
-  const panel  = document.getElementById('prize-detail');
-  if (!panel) return;
-  const toggles = document.querySelectorAll('[data-detail-toggle], .hero__detail-toggle');
-
-  function setExpanded(open){
-    panel.hidden = !open;
-    toggles.forEach(t => t.setAttribute('aria-expanded', String(open)));
-    if (open) {
-      // パネルが見えるようスクロール
-      requestAnimationFrame(() => {
-        panel.scrollIntoView({behavior:'smooth', block:'nearest'});
-      });
-    }
-  }
-
-  toggles.forEach(t => {
-    t.addEventListener('click', e => {
-      e.preventDefault();
-      const open = t.getAttribute('aria-expanded') !== 'true';
-      setExpanded(open);
-    });
-  });
-})();
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
