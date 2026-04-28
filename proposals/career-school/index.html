@@ -74,6 +74,7 @@ a{color:inherit;text-decoration:none}
     var(--bg);
 }
 .hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;text-align:left}
+@supports (aspect-ratio:1){.hero__inner{align-items:center}}
 .hero__inner > *{text-align:left}
 .hero__pretitle{
   display:inline-block;padding:6px 16px;border-radius:999px;
@@ -100,7 +101,7 @@ a{color:inherit;text-decoration:none}
 /* FV内動画フレーム（参考LP videoContent-lpDraw 模倣 + 装飾） */
 .hero__video-frame{
   position:relative;
-  aspect-ratio:9/11;
+  aspect-ratio:16/9;
   border-radius:24px;
   overflow:hidden;
   background:#000;
@@ -110,7 +111,7 @@ a{color:inherit;text-decoration:none}
   transform:translateZ(0);
 }
 .hero__video-frame video{
-  width:100%;height:100%;object-fit:cover;display:block;
+  width:100%;height:100%;object-fit:cover;object-position:center;display:block;
 }
 .hero__video-badge{
   position:absolute;
@@ -366,6 +367,146 @@ section{padding:88px 0}
 }
 .final-cta .btn--primary{background:#fff;color:var(--primary);box-shadow:0 12px 24px rgba(0,0,0,.25)}
 
+/* キャンペーン（プレゼント訴求 / WP移植想定の構造化レイアウト） */
+.campaign{
+  position:relative;
+  padding:80px 0 96px;
+  background:
+    radial-gradient(800px 400px at 50% 0,#FFD9CE 0,transparent 70%),
+    linear-gradient(180deg,#FFE9DE 0%,#FFF3EC 100%);
+  overflow:hidden;
+}
+.campaign::before,
+.campaign::after{
+  content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,212,189,.6) 0%,transparent 70%);
+  pointer-events:none;
+}
+.campaign::before{top:-60px;left:-60px}
+.campaign::after{bottom:-60px;right:-60px}
+
+.campaign__countdown{
+  max-width:560px;margin:0 auto 28px;padding:18px 24px;
+  background:#fff;border:2px solid var(--primary);
+  border-radius:18px;text-align:center;
+  box-shadow:0 8px 24px rgba(194,84,63,.15);
+}
+.campaign__countdown-label{
+  display:block;font-weight:700;font-size:.92rem;color:var(--ink);margin-bottom:10px;
+}
+.campaign__countdown-label strong{color:var(--primary)}
+.campaign__countdown-timer{
+  display:flex;justify-content:center;gap:10px;align-items:baseline;
+}
+.campaign__time{
+  display:inline-flex;align-items:baseline;gap:4px;
+  background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px;
+  font-variant-numeric:tabular-nums;
+}
+.campaign__time b{font-size:1.4rem;font-weight:900;letter-spacing:-.02em}
+.campaign__time i{font-size:.7rem;font-style:normal;opacity:.85}
+
+.campaign__pills{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 0 24px;
+}
+.campaign__pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:var(--primary);
+  padding:10px 22px;border-radius:999px;
+  font-weight:900;font-size:1rem;
+  box-shadow:0 4px 12px rgba(194,84,63,.18);
+  border:2px solid var(--primary);
+}
+.campaign__pill::before{
+  content:"✓";display:inline-flex;width:20px;height:20px;
+  background:var(--primary);color:#fff;border-radius:50%;
+  align-items:center;justify-content:center;font-size:.78rem;font-weight:900;
+}
+
+.campaign__heading{
+  text-align:center;font-size:clamp(1.3rem,2.4vw,1.7rem);
+  font-weight:900;line-height:1.6;margin:0 0 36px;letter-spacing:-.01em;
+}
+.campaign__heading em{
+  font-style:normal;color:var(--primary);
+  background:linear-gradient(transparent 60%,var(--mark) 60%);
+  padding:0 6px;
+}
+.campaign__heading strong{color:var(--primary);font-size:1.15em}
+
+/* プレゼント本体（画像 ↔ 商品名の紐付け構造） */
+.campaign__prizes{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:24px;align-items:center;
+  max-width:880px;margin:0 auto 32px;
+}
+.prize-group{
+  background:#fff;border-radius:24px;padding:24px 20px 20px;
+  box-shadow:0 16px 32px rgba(46,42,40,.10);
+  position:relative;
+}
+.prize-group__label{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+  background:var(--primary);color:#fff;
+  padding:6px 22px;border-radius:999px;
+  font-weight:900;font-size:.88rem;letter-spacing:.04em;white-space:nowrap;
+  box-shadow:0 4px 10px rgba(194,84,63,.3);
+}
+.prize-group--bonus .prize-group__label{
+  background:var(--ink);
+}
+.prize-list{
+  list-style:none;margin:0;padding:0;
+  display:grid;gap:16px;
+}
+.prize-card{
+  background:var(--highlight);border-radius:16px;padding:14px;
+  display:grid;grid-template-columns:1fr;gap:10px;
+}
+.prize-card__media{
+  position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;
+  background:linear-gradient(135deg,#fff,var(--bg));
+}
+.prize-card__media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.prize-card__placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  color:#aaa;font-size:.78rem;text-align:center;padding:8px;
+  border:1px dashed #c4b8a6;background:#fff;
+}
+.prize-card__qty{
+  position:absolute;top:8px;right:8px;
+  background:var(--primary);color:#fff;
+  padding:4px 12px;border-radius:999px;
+  font-weight:900;font-size:.78rem;
+  box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+.prize-card__name{
+  margin:0;text-align:center;font-weight:900;font-size:1rem;
+  color:var(--ink);letter-spacing:-.01em;
+}
+
+.prize-and{
+  font-size:2.6rem;font-weight:900;color:var(--primary);
+  text-align:center;line-height:1;
+}
+
+.campaign__deadline{
+  text-align:center;font-weight:900;font-size:1.1rem;margin:0 0 24px;
+  color:var(--ink);
+}
+.campaign__deadline strong{
+  color:var(--primary);font-size:1.4em;
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 6px;
+}
+.campaign__cta{text-align:center}
+.campaign__note{
+  margin-top:14px;text-align:center;
+  font-size:.82rem;color:var(--sub);
+}
+
 /* フッター */
 footer{background:var(--ink);color:#fff;padding:32px 0;text-align:center;font-size:.85rem;opacity:.92}
 footer a{color:#fff;text-decoration:underline;margin:0 12px}
@@ -382,7 +523,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .hero__cta .btn{width:100%}
   .hero__trust{justify-content:space-between;gap:8px;font-size:.7rem}
   .hero__trust strong{font-size:1.15rem}
-  .hero__video-frame{aspect-ratio:9/12;border-radius:18px}
+  .hero__video-frame{aspect-ratio:16/9;border-radius:18px}
   .hero__video-badge{font-size:.7rem;padding:6px 12px;top:12px;left:12px}
   .hero__video-caption{font-size:.82rem;left:12px;right:12px;bottom:12px}
   .hero__visual-blob{width:180px;height:180px;top:-40px;right:-40px}
@@ -402,6 +543,23 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .pricing__card{padding:32px 20px}
   .pricing__price{font-size:2.2rem}
   .final-cta{padding:80px 0}
+
+  .campaign{padding:56px 0 72px}
+  .campaign__countdown-timer{gap:6px}
+  .campaign__time{padding:6px 9px}
+  .campaign__time b{font-size:1.15rem}
+  .campaign__pills{gap:8px}
+  .campaign__pill{font-size:.88rem;padding:8px 16px}
+  .campaign__heading{font-size:1.15rem;margin:0 0 28px}
+  .campaign__prizes{
+    grid-template-columns:1fr;gap:32px;
+  }
+  .prize-and{font-size:2rem;margin:-8px 0}
+  .prize-list{grid-template-columns:1fr 1fr;gap:12px}
+  .prize-card{padding:10px}
+  .prize-card__name{font-size:.88rem}
+  .campaign__deadline{font-size:1rem}
+
   .sticky-cta{display:flex}
   body{padding-bottom:80px}
   section{padding:56px 0}
@@ -806,8 +964,99 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
       まずは45分の無料説明会で、あなたに合うかを確認してみてください。<br>
       勧誘は一切ありません。
     </p>
-    <a href="#" class="btn btn--primary btn--lg">無料説明会を予約する</a>
+    <a href="#campaign" class="btn btn--primary btn--lg">無料説明会に参加する</a>
     <p style="margin-top:16px;font-size:.85rem;opacity:.85">※ オンライン開催・スマホ参加OK・録画視聴可</p>
+  </div>
+</section>
+
+<!--
+  ================================================================
+  キャンペーン（Wチャンス・プレゼント訴求）
+  ----------------------------------------------------------------
+  WordPress 移植時の想定:
+    - .campaign__countdown[data-deadline] → ACFテキスト or 投稿日時
+    - .prize-group → ACFリピーター（label + items[]）
+    - .prize-card[data-prize-id] → 個別プレゼント
+        ├─ .prize-card__media img → ACF Image
+        ├─ .prize-card__qty → ACF テキスト（"1名様"等）
+        └─ .prize-card__name → ACF テキスト（商品名）
+  ================================================================
+-->
+<section class="campaign" id="campaign">
+  <div class="container">
+
+    <!-- カウントダウン -->
+    <div class="campaign__countdown reveal" data-deadline="2026-04-30T23:59:59+09:00">
+      <span class="campaign__countdown-label">⏰ <strong>豪華プレゼント Wチャンス</strong> 終了まで</span>
+      <div class="campaign__countdown-timer" aria-live="polite">
+        <span class="campaign__time"><b data-cd="d">--</b><i>日</i></span>
+        <span class="campaign__time"><b data-cd="h">--</b><i>時間</i></span>
+        <span class="campaign__time"><b data-cd="m">--</b><i>分</i></span>
+        <span class="campaign__time"><b data-cd="s">--</b><i>秒</i></span>
+      </div>
+    </div>
+
+    <!-- 訴求ピル -->
+    <div class="campaign__pills reveal">
+      <span class="campaign__pill">在宅ワークも</span>
+      <span class="campaign__pill">収入アップも</span>
+    </div>
+
+    <!-- 見出し -->
+    <h2 class="campaign__heading reveal">
+      無料説明会に<em>参加</em>するだけで<br>
+      <strong>豪華プレゼント</strong>当たる<em>Wチャンス</em>に応募
+    </h2>
+
+    <!-- プレゼント本体（画像と商品名が紐付いた構造） -->
+    <div class="campaign__prizes reveal">
+
+      <!-- グループ1: 申し込みで -->
+      <div class="prize-group" data-group="entry">
+        <div class="prize-group__label">申し込みで</div>
+        <ul class="prize-list">
+          <li class="prize-card" data-prize-id="hawaii">
+            <div class="prize-card__media">
+              <div class="prize-card__placeholder">画像予定<br>(prize-hawaii.png)<br>ハワイ旅行イメージ</div>
+              <span class="prize-card__qty">1名様</span>
+            </div>
+            <p class="prize-card__name">ハワイ旅行</p>
+          </li>
+          <li class="prize-card" data-prize-id="macbook">
+            <div class="prize-card__media">
+              <div class="prize-card__placeholder">画像予定<br>(prize-macbook.png)<br>MacBook Pro</div>
+              <span class="prize-card__qty">1名様</span>
+            </div>
+            <p class="prize-card__name">MacBook Pro</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="prize-and" aria-hidden="true">&amp;</div>
+
+      <!-- グループ2: さらに参加で -->
+      <div class="prize-group prize-group--bonus" data-group="bonus">
+        <div class="prize-group__label">さらに参加で</div>
+        <ul class="prize-list">
+          <li class="prize-card" data-prize-id="ipad">
+            <div class="prize-card__media">
+              <div class="prize-card__placeholder">画像予定<br>(prize-ipad.png)<br>iPad &amp; Apple Pencil</div>
+              <span class="prize-card__qty">1名様</span>
+            </div>
+            <p class="prize-card__name">iPad &amp; Apple Pencil</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="campaign__deadline reveal">
+      Wチャンスは <strong>4/30</strong> まで！今がチャンス
+    </p>
+
+    <div class="campaign__cta reveal">
+      <a href="#" class="btn btn--primary btn--lg">無料説明会に参加する</a>
+      <p class="campaign__note">※ 締切日時を過ぎたお申し込みは応募対象外となります</p>
+    </div>
   </div>
 </section>
 
@@ -846,6 +1095,37 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
   });
 });
+
+/* キャンペーンのカウントダウン（data-deadline 属性で締切を制御） */
+(function(){
+  const root = document.querySelector('.campaign__countdown');
+  if (!root) return;
+  const deadline = new Date(root.getAttribute('data-deadline')).getTime();
+  if (isNaN(deadline)) return;
+  const cells = {
+    d: root.querySelector('[data-cd="d"]'),
+    h: root.querySelector('[data-cd="h"]'),
+    m: root.querySelector('[data-cd="m"]'),
+    s: root.querySelector('[data-cd="s"]'),
+  };
+  const pad = n => String(n).padStart(2, '0');
+  function tick(){
+    const diff = deadline - Date.now();
+    if (diff <= 0) {
+      cells.d.textContent = '00';
+      cells.h.textContent = '00';
+      cells.m.textContent = '00';
+      cells.s.textContent = '00';
+      return;
+    }
+    cells.d.textContent = pad(Math.floor(diff / 86400000));
+    cells.h.textContent = pad(Math.floor(diff / 3600000) % 24);
+    cells.m.textContent = pad(Math.floor(diff / 60000) % 60);
+    cells.s.textContent = pad(Math.floor(diff / 1000) % 60);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 </script>
 </body>
 </html>
