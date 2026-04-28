@@ -152,6 +152,8 @@ a{color:inherit;text-decoration:none}
   max-width:520px;width:100%;
   margin:0 auto;
   transition:transform .2s ease,box-shadow .2s ease;
+  font-family:inherit;color:inherit;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
 }
 .hero__prize:hover{
   transform:translateY(-2px);
@@ -262,6 +264,106 @@ section{padding:88px 0}
   margin:0 0 48px;line-height:1.5;letter-spacing:-.01em;
 }
 .section-title em{color:var(--primary);font-style:normal;font-size:1.5em}
+
+/* FV内アコーディオン（プレゼント詳細） */
+.hero__detail-toggle{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--ink);
+  border:2px solid var(--ink);border-radius:999px;
+  padding:14px 28px;font-weight:700;font-size:.95rem;cursor:pointer;
+  transition:transform .15s ease,background .2s ease,color .2s ease;
+  font-family:inherit;
+}
+.hero__detail-toggle:hover{transform:translateY(-2px);background:var(--ink);color:#fff}
+.hero__detail-toggle .chev{
+  display:inline-block;transition:transform .25s ease;font-size:.8rem;
+}
+.hero__detail-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+
+.hero__detail-panel{
+  margin:24px auto 0;max-width:720px;
+  background:#fff;border:2px solid var(--primary);border-radius:24px;
+  padding:32px 28px;text-align:left;
+  box-shadow:0 24px 48px rgba(194,84,63,.18);
+  overflow:hidden;
+}
+.hero__detail-panel[hidden]{display:none}
+.hero__detail-panel-title{
+  text-align:center;font-size:1.15rem;font-weight:900;
+  color:var(--ink);margin:0 0 18px;letter-spacing:-.01em;
+}
+.hero__detail-panel-title em{
+  color:var(--primary);font-style:normal;
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
+}
+
+.detail-prizes{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin:0 0 28px;list-style:none;padding:0;
+}
+.detail-prizes li{
+  background:var(--highlight);border-radius:14px;padding:10px;
+  text-align:center;
+}
+.detail-prizes li .img{
+  aspect-ratio:1;border-radius:10px;overflow:hidden;
+  background:#fff;margin-bottom:8px;
+}
+.detail-prizes li img{width:100%;height:100%;object-fit:cover;display:block}
+.detail-prizes li .name{font-weight:900;font-size:.85rem;color:var(--ink);display:block}
+.detail-prizes li .qty{font-size:.7rem;color:var(--primary);font-weight:700;display:block;margin-top:2px}
+
+.detail-steps{
+  list-style:none;padding:0;margin:0 0 24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.detail-step{
+  display:grid;grid-template-columns:auto 1fr;gap:14px;
+  padding:16px;background:var(--bg);border-radius:14px;
+  border-left:4px solid var(--primary);
+}
+.detail-step__num{
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  background:var(--primary);color:#fff;
+  width:48px;min-width:48px;
+  border-radius:8px;
+  font-size:.78rem;font-weight:900;letter-spacing:.04em;
+  text-align:center;line-height:1.1;padding:6px 4px;
+}
+.detail-step__num b{display:block;font-size:1.1rem;letter-spacing:0}
+.detail-step__title{
+  font-size:1rem;font-weight:900;line-height:1.5;margin:0 0 6px;color:var(--ink);
+}
+.detail-step__title strong{
+  color:var(--primary);
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 2px;
+}
+.detail-step__body{
+  font-size:.88rem;line-height:1.7;color:var(--sub);margin:0;
+}
+.detail-step__chips{
+  list-style:none;padding:0;margin:8px 0 0;
+  display:flex;flex-direction:column;gap:6px;
+}
+.detail-step__chips li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:.85rem;line-height:1.6;font-weight:600;color:var(--ink);
+}
+.detail-step__chips li::before{
+  content:"✓";flex-shrink:0;
+  width:18px;height:18px;background:var(--primary);color:#fff;
+  border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:900;
+}
+
+.detail-step--highlight{
+  border-left-color:var(--mark);
+  background:linear-gradient(135deg,#FFF8E5,#FFE9CD);
+}
+.detail-step--highlight .detail-step__num{background:var(--ink)}
+
+.hero__detail-cta{text-align:center;margin-top:8px}
 
 /* 体験レッスン内容（プレゼントもらう方法 / Empathyの直前） */
 .trial-flow{
@@ -784,6 +886,18 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .trial-card__num{width:46px;height:46px;font-size:1rem;top:-18px;left:18px}
   .trial-card__title{font-size:1.1rem}
 
+  .hero__detail-panel{padding:22px 18px;border-radius:20px;margin-top:20px}
+  .hero__detail-panel-title{font-size:1rem;margin-bottom:14px}
+  .detail-prizes{gap:8px;margin-bottom:20px}
+  .detail-prizes li{padding:8px}
+  .detail-prizes li .name{font-size:.75rem}
+  .detail-prizes li .qty{font-size:.65rem}
+  .detail-step{grid-template-columns:auto 1fr;gap:10px;padding:12px}
+  .detail-step__num{width:42px;min-width:42px;font-size:.7rem}
+  .detail-step__num b{font-size:.95rem}
+  .detail-step__title{font-size:.92rem}
+  .detail-step__body{font-size:.82rem}
+
   .empathy__inner,.benefit__row,.benefit__row:nth-child(even),.story__chapter,.story__chapter:nth-child(even){grid-template-columns:1fr;gap:24px}
   .benefit__row:nth-child(even) .benefit__visual,.story__chapter:nth-child(even) .story__visual{order:0}
   .empathy__heading{font-size:1.15rem}
@@ -895,8 +1009,11 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           スマホ参加OK・勧誘なし。
         </p>
         <div class="hero__cta">
-          <a href="#cta" class="btn btn--primary btn--lg">無料体験レッスンに参加する</a>
-          <a href="#campaign" class="btn btn--ghost">プレゼント詳細を見る</a>
+          <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験レッスンに参加する</a>
+          <button type="button" class="hero__detail-toggle"
+                  aria-expanded="false" aria-controls="prize-detail">
+            🎁 プレゼント詳細を見る <span class="chev" aria-hidden="true">▼</span>
+          </button>
         </div>
 
         <!--
@@ -905,20 +1022,81 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           - data-campaign-id は inc/shelikes-campaigns.php の id と一致させる
           - 画像ファイル名は prize-{id}.png 規約（assets/img/ 直下）
         -->
-        <a href="#campaign" class="hero__prize reveal"
+        <button type="button" class="hero__prize reveal"
            data-campaign-id="ipad-pencil"
            data-prize="iPad &amp; Apple Pencil"
-           data-deadline="2026-04-30T21:00:00+09:00">
+           data-deadline="2026-04-30T21:00:00+09:00"
+           aria-expanded="false" aria-controls="prize-detail"
+           data-detail-toggle>
           <div class="hero__prize-media">
-            <span class="hero__prize-placeholder" aria-hidden="true">🎁</span>
-            <!-- 画像作成後: <img src="./assets/img/prize-ipad-pencil.png" alt="iPad &amp; Apple Pencil"> -->
+            <img src="./assets/img/prize-ipad.png" alt="iPad &amp; Apple Pencil" loading="eager">
           </div>
           <div class="hero__prize-info">
             <span class="hero__prize-label">本日のプレゼント</span>
             <p class="hero__prize-name">iPad &amp; Apple Pencil</p>
             <p class="hero__prize-qty">無料体験参加で <strong>1名様</strong> に当たる</p>
           </div>
-        </a>
+        </button>
+      </div>
+
+      <!-- プレゼント詳細アコーディオンパネル（クリックで開閉） -->
+      <div class="hero__detail-panel reveal" id="prize-detail" hidden>
+        <h3 class="hero__detail-panel-title">
+          本日のプレゼント・<em>Wチャンス</em>
+        </h3>
+
+        <ul class="detail-prizes">
+          <li>
+            <div class="img"><img src="./assets/img/prize-hawaii.png" alt="ハワイ旅行"></div>
+            <span class="name">ハワイ旅行</span>
+            <span class="qty">1名様</span>
+          </li>
+          <li>
+            <div class="img"><img src="./assets/img/prize-macbook.png" alt="MacBook Pro"></div>
+            <span class="name">MacBook Pro</span>
+            <span class="qty">1名様</span>
+          </li>
+          <li>
+            <div class="img"><img src="./assets/img/prize-ipad.png" alt="iPad &amp; Apple Pencil"></div>
+            <span class="name">iPad &amp; Apple Pencil</span>
+            <span class="qty">1名様</span>
+          </li>
+        </ul>
+
+        <h3 class="hero__detail-panel-title">プレゼントをもらうには？</h3>
+
+        <ol class="detail-steps">
+          <li class="detail-step">
+            <span class="detail-step__num">STEP<b>1</b></span>
+            <div>
+              <h4 class="detail-step__title">無料体験レッスンに申し込む</h4>
+              <p class="detail-step__body">所要時間 約45分・スマホOK・申込60秒</p>
+            </div>
+          </li>
+
+          <li class="detail-step">
+            <span class="detail-step__num">STEP<b>2</b></span>
+            <div>
+              <h4 class="detail-step__title">体験レッスンに参加（45分）</h4>
+              <ul class="detail-step__chips">
+                <li>人気のWebスキル3つをプチ体験（デザイン / ライティング / マーケティング）</li>
+                <li>キャリアカウンセリングで1on1お悩み相談</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="detail-step detail-step--highlight">
+            <span class="detail-step__num">STEP<b>3</b></span>
+            <div>
+              <h4 class="detail-step__title">受講料 <strong>最大70% 還元</strong> ＋ Wチャンスでプレゼント抽選</h4>
+              <p class="detail-step__body">体験当日入会で受講料の50%が即時還元、転職後1年継続で追加20%（合計最大70%）。さらに参加するだけでプレゼント抽選に応募完了！</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="hero__detail-cta">
+          <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験に申し込む</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1299,7 +1477,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
     </div>
 
     <div class="subsidy__cta reveal">
-      <a href="#cta" class="btn btn--primary btn--lg">無料体験レッスンで詳しく聞く</a>
+      <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験レッスンで詳しく聞く</a>
       <p class="subsidy__cta-note">※補助金の適用可否は無料体験レッスン内で個別に確認できます</p>
     </div>
   </div>
@@ -1334,7 +1512,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
       </div>
       <div class="faq__item reveal">
         <div class="faq__q">補助金は本当に使えますか？</div>
-        <p class="faq__a">経済産業省「リスキリングを通じたキャリアアップ支援事業」の対象講座です。条件を満たすと最大70%（実質約49万円）が還付されます。詳細は無料説明会でご案内。</p>
+        <p class="faq__a">経済産業省「リスキリングを通じたキャリアアップ支援事業」の対象講座です。条件を満たすと最大70%（実質約49万円）が還付されます。詳細は無料体験レッスンでご案内。</p>
       </div>
     </div>
   </div>
@@ -1349,10 +1527,10 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
     <span class="final-cta__urgency">⏰ 今月中の申込で入会金 33,000円 → 0円</span>
     <h2 class="section-title">次の半年、<br>「変わらなかった自分」<br>を選びますか？</h2>
     <p class="final-cta__lead">
-      まずは45分の無料説明会で、あなたに合うかを確認してみてください。<br>
+      まずは45分の無料体験レッスンで、あなたに合うかを確認してみてください。<br>
       勧誘は一切ありません。
     </p>
-    <a href="#campaign" class="btn btn--primary btn--lg">無料説明会に参加する</a>
+    <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験レッスンに参加する</a>
     <p style="margin-top:16px;font-size:.85rem;opacity:.85">※ オンライン開催・スマホ参加OK・録画視聴可</p>
   </div>
 </section>
@@ -1392,7 +1570,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 
     <!-- 見出し -->
     <h2 class="campaign__heading reveal">
-      無料説明会に<em>参加</em>するだけで<br>
+      無料体験レッスンに<em>参加</em>するだけで<br>
       <strong>豪華プレゼント</strong>当たる<em>Wチャンス</em>に応募
     </h2>
 
@@ -1428,7 +1606,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
         <ul class="prize-list">
           <li class="prize-card" data-prize-id="ipad">
             <div class="prize-card__media">
-              <div class="prize-card__placeholder">画像予定<br>(prize-ipad.png)<br>iPad &amp; Apple Pencil</div>
+              <img src="./assets/img/prize-ipad.png" alt="iPad &amp; Apple Pencil" loading="lazy">
               <span class="prize-card__qty">1名様</span>
             </div>
             <p class="prize-card__name">iPad &amp; Apple Pencil</p>
@@ -1442,7 +1620,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
     </p>
 
     <div class="campaign__cta reveal">
-      <a href="#" class="btn btn--primary btn--lg">無料説明会に参加する</a>
+      <a href="#" data-cta="affiliate" class="btn btn--primary btn--lg">無料体験レッスンに参加する</a>
       <p class="campaign__note">※ 締切日時を過ぎたお申し込みは応募対象外となります</p>
     </div>
   </div>
@@ -1459,11 +1637,53 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   </div>
 </footer>
 
-<a class="sticky-cta" href="#cta">
-  <span style="color:#fff;font-weight:700">▶ 無料説明会に予約する（45分）</span>
+<a class="sticky-cta" href="#" data-cta="affiliate">
+  <span style="color:#fff;font-weight:700">▶ 無料体験レッスンに参加する（45分）</span>
 </a>
 
 <script>
+/* ================================================================
+   アフィリエイトリンク 一括管理
+   ----------------------------------------------------------------
+   data-cta="affiliate" を付けた全 <a> に同じURLを流し込む。
+   URL変更時はこの 1箇所 だけ修正すればOK。
+   WP移植時: functions.php に define('AFFILIATE_URL','...') を置き、
+            <a href="<?= esc_url(AFFILIATE_URL) ?>" data-cta="affiliate"> でも可。
+   ================================================================ */
+const AFFILIATE_URL = 'https://shelikes.jp/trial/'; // ← ここだけ変更すれば全CTA同期
+
+document.querySelectorAll('a[data-cta="affiliate"]').forEach(a => {
+  a.href = AFFILIATE_URL;
+  a.target = '_blank';
+  a.rel = 'noopener sponsored';
+});
+
+/* プレゼント詳細アコーディオン（複数トリガー対応） */
+(function(){
+  const panel  = document.getElementById('prize-detail');
+  if (!panel) return;
+  const toggles = document.querySelectorAll('[data-detail-toggle], .hero__detail-toggle');
+
+  function setExpanded(open){
+    panel.hidden = !open;
+    toggles.forEach(t => t.setAttribute('aria-expanded', String(open)));
+    if (open) {
+      // パネルが見えるようスクロール
+      requestAnimationFrame(() => {
+        panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+    }
+  }
+
+  toggles.forEach(t => {
+    t.addEventListener('click', e => {
+      e.preventDefault();
+      const open = t.getAttribute('aria-expanded') !== 'true';
+      setExpanded(open);
+    });
+  });
+})();
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
