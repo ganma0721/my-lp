@@ -94,10 +94,70 @@ a{color:inherit;text-decoration:none}
 .hero__trust strong{color:var(--ink);font-size:1.5rem;display:block;font-weight:900;letter-spacing:-.02em}
 
 .hero__visual{
-  aspect-ratio:4/5;border-radius:20px;overflow:hidden;
-  box-shadow:0 24px 48px rgba(46,42,40,.18);
+  position:relative;
 }
-.hero__visual img{width:100%;height:100%;object-fit:cover}
+
+/* FV内動画フレーム（参考LP videoContent-lpDraw 模倣 + 装飾） */
+.hero__video-frame{
+  position:relative;
+  aspect-ratio:9/11;
+  border-radius:24px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 32px 64px -12px rgba(46,42,40,.32),
+             0 0 0 1px rgba(255,255,255,.05);
+  z-index:2;
+  transform:translateZ(0);
+}
+.hero__video-frame video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero__video-badge{
+  position:absolute;
+  top:16px;left:16px;z-index:3;
+  padding:8px 14px;
+  background:rgba(255,255,255,.95);
+  color:var(--ink);
+  border-radius:999px;
+  font-weight:700;font-size:.78rem;letter-spacing:.04em;
+  backdrop-filter:saturate(180%) blur(8px);
+  -webkit-backdrop-filter:saturate(180%) blur(8px);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.hero__video-badge::before{
+  content:"";width:8px;height:8px;border-radius:50%;
+  background:#34c759;animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(1.3)}
+}
+.hero__video-caption{
+  position:absolute;
+  left:16px;right:16px;bottom:16px;z-index:3;
+  color:#fff;font-weight:700;font-size:.92rem;letter-spacing:.02em;
+  text-shadow:0 2px 12px rgba(0,0,0,.6);
+  pointer-events:none;
+}
+.hero__video-caption::after{
+  content:"";position:absolute;left:-16px;right:-16px;bottom:-16px;height:120%;
+  background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 100%);
+  z-index:-1;border-radius:0 0 24px 24px;
+}
+
+/* 装飾用：動画背面のソフトブロブ */
+.hero__visual-blob{
+  position:absolute;width:280px;height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--mark) 0%,transparent 70%);
+  top:-60px;right:-80px;z-index:1;
+  pointer-events:none;filter:blur(2px);
+}
+.hero__visual-blob--bottom{
+  top:auto;bottom:-60px;left:-80px;right:auto;
+  background:radial-gradient(circle,rgba(194,84,63,.18) 0%,transparent 70%);
+}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -312,22 +372,40 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 
 /* レスポンシブ */
 @media (max-width:780px){
-  .hero{padding:48px 0 64px}
-  .hero__inner{grid-template-columns:1fr;gap:32px}
+  .hero{padding:32px 0 56px}
+  .hero__inner{grid-template-columns:1fr;gap:28px}
+  .hero__inner > div:first-child{order:2}
+  .hero__visual{order:1}
+  .hero__title{font-size:1.55rem;line-height:1.45}
+  .hero__lead{font-size:.92rem}
+  .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero__cta .btn{width:100%}
+  .hero__trust{justify-content:space-between;gap:8px;font-size:.7rem}
+  .hero__trust strong{font-size:1.15rem}
+  .hero__video-frame{aspect-ratio:9/12;border-radius:18px}
+  .hero__video-badge{font-size:.7rem;padding:6px 12px;top:12px;left:12px}
+  .hero__video-caption{font-size:.82rem;left:12px;right:12px;bottom:12px}
+  .hero__visual-blob{width:180px;height:180px;top:-40px;right:-40px}
+  .hero__visual-blob--bottom{display:none}
+
   .empathy__inner,.benefit__row,.benefit__row:nth-child(even),.story__chapter,.story__chapter:nth-child(even){grid-template-columns:1fr;gap:24px}
   .benefit__row:nth-child(even) .benefit__visual,.story__chapter:nth-child(even) .story__visual{order:0}
+  .empathy__heading{font-size:1.15rem}
+  .empathy__bridge{font-size:.95rem;padding:24px}
   .voice__grid{grid-template-columns:1fr}
   .skills__grid{grid-template-columns:repeat(2,1fr)}
-  .voice-card{grid-template-columns:80px 1fr;gap:16px;padding:20px}
-  .voice-card__photo{width:80px;height:80px}
+  .voice-card{grid-template-columns:72px 1fr;gap:14px;padding:18px}
+  .voice-card__photo{width:72px;height:72px}
   .step{padding-left:64px}
   .step__num{width:48px;height:48px;font-size:1rem}
   .curriculum__steps::before{left:24px}
-  .pricing__card{padding:32px 24px}
+  .pricing__card{padding:32px 20px}
   .pricing__price{font-size:2.2rem}
+  .final-cta{padding:80px 0}
   .sticky-cta{display:flex}
   body{padding-bottom:80px}
-  section{padding:64px 0}
+  section{padding:56px 0}
+  .section-title{margin:0 0 32px}
 }
 </style>
 </head>
@@ -360,18 +438,17 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
         </div>
       </div>
       <div class="hero__visual reveal">
-        <img src="./assets/img/A-01.png" alt="カフェの昼休み、スマホで講座を見ながらメモを取る女性" loading="eager">
+        <span class="hero__visual-blob"></span>
+        <span class="hero__visual-blob hero__visual-blob--bottom"></span>
+        <div class="hero__video-frame">
+          <span class="hero__video-badge">LIVE 在宅で働く女性たち</span>
+          <video src="./assets/video/V-01-fv-zaitaku.mp4"
+                 autoplay loop muted playsinline preload="auto"
+                 poster="./assets/img/A-01.png"
+                 aria-label="在宅で働く受講生の様子"></video>
+          <div class="hero__video-caption">私たちの“新しい働き方”、ここから。</div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FV直下フルブリード動画 -->
-<section class="fv-video">
-  <div class="fv-video__inner">
-    <video src="./assets/video/V-01-fv-zaitaku.mp4" autoplay loop muted playsinline preload="auto"></video>
-    <div class="fv-video__overlay">
-      ✔︎ 在宅で働く、新しい選択肢を。
     </div>
   </div>
 </section>
