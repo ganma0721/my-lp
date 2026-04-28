@@ -22,6 +22,52 @@ html{scroll-behavior:smooth}
 body{
   margin:0;font-family:"Hiragino Sans","Yu Gothic","Helvetica Neue",sans-serif;
   color:var(--ink);background:var(--bg);line-height:1.85;-webkit-font-smoothing:antialiased;
+  padding-top:54px; /* 固定キャンペーンバー分の余白（モバイル: 70px） */
+}
+@media (max-width:780px){body{padding-top:70px}}
+
+/* 固定キャンペーンバー（PHPの shelikes_get_current_campaign() から日替わりで差し込み想定） */
+.campaign-bar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+  color:#fff;
+  box-shadow:0 4px 12px rgba(46,42,40,.18);
+}
+.campaign-bar__inner{
+  max-width:1080px;margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
+}
+.campaign-bar__label{
+  font-weight:700;font-size:.92rem;letter-spacing:.02em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.campaign-bar__label::before{
+  content:"🎁";font-size:1rem;
+}
+.campaign-bar__prize{
+  background:var(--mark);color:var(--ink);
+  padding:2px 10px;border-radius:6px;font-weight:900;
+  margin-right:4px;
+}
+.campaign-bar__timer{
+  display:inline-flex;gap:6px;align-items:baseline;
+  font-variant-numeric:tabular-nums;
+}
+.campaign-bar__cell{
+  display:inline-flex;align-items:baseline;gap:2px;
+  background:rgba(255,255,255,.18);
+  padding:4px 8px;border-radius:6px;
+  border:1px solid rgba(255,255,255,.25);
+}
+.campaign-bar__cell b{font-size:1rem;font-weight:900;letter-spacing:-.02em}
+.campaign-bar__cell i{font-size:.7rem;font-style:normal;opacity:.9}
+.campaign-bar.is-ended{display:none}
+@media (max-width:780px){
+  .campaign-bar__inner{padding:8px 12px;gap:8px;flex-direction:column}
+  .campaign-bar__label{font-size:.78rem;text-align:center}
+  .campaign-bar__cell{padding:2px 6px}
+  .campaign-bar__cell b{font-size:.88rem}
+  .campaign-bar__cell i{font-size:.65rem}
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
@@ -73,9 +119,11 @@ a{color:inherit;text-decoration:none}
     radial-gradient(700px 400px at 90% 90%,#FFE4A3 0,transparent 70%),
     var(--bg);
 }
-.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;text-align:left}
-@supports (aspect-ratio:1){.hero__inner{align-items:center}}
-.hero__inner > *{text-align:left}
+.hero__inner{
+  display:flex;flex-direction:column;align-items:center;gap:48px;
+  text-align:center;
+}
+.hero__copy{max-width:720px;width:100%}
 .hero__pretitle{
   display:inline-block;padding:6px 16px;border-radius:999px;
   background:var(--ink);color:var(--highlight);font-weight:700;font-size:.78rem;
@@ -90,12 +138,12 @@ a{color:inherit;text-decoration:none}
   background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
 }
 .hero__lead{font-size:1rem;color:var(--sub);margin:0 0 28px}
-.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;justify-content:flex-start}
-.hero__trust{display:flex;gap:24px;flex-wrap:wrap;font-size:.8rem;color:var(--sub);justify-content:flex-start}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;justify-content:center}
+.hero__trust{display:flex;gap:32px;flex-wrap:wrap;font-size:.8rem;color:var(--sub);justify-content:center}
 .hero__trust strong{color:var(--ink);font-size:1.5rem;display:block;font-weight:900;letter-spacing:-.02em}
 
 .hero__visual{
-  position:relative;
+  position:relative;width:100%;max-width:960px;
 }
 
 /* FV内動画フレーム（参考LP videoContent-lpDraw 模倣 + 装飾） */
@@ -514,9 +562,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 /* レスポンシブ */
 @media (max-width:780px){
   .hero{padding:32px 0 56px}
-  .hero__inner{grid-template-columns:1fr;gap:28px}
-  .hero__inner > div:first-child{order:2}
-  .hero__visual{order:1}
+  .hero__inner{gap:28px}
   .hero__title{font-size:1.55rem;line-height:1.45}
   .hero__lead{font-size:.92rem}
   .hero__cta{flex-direction:column;align-items:stretch;gap:10px}
@@ -569,11 +615,62 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 </head>
 <body>
 
+<!--
+  ================================================================
+  固定キャンペーンバー（最上部・常時表示）
+  ----------------------------------------------------------------
+  WordPress 移植時:
+    require_once get_template_directory() . '/inc/shelikes-campaigns.php';
+    $cp = shelikes_get_current_campaign();
+    $end_iso = (new DateTime($cp['end'], new DateTimeZone('Asia/Tokyo')))->format('c');
+
+    <div class="campaign-bar"
+         data-prize="<?php echo esc_attr($cp['prize']); ?>"
+         data-deadline="<?php echo esc_attr($end_iso); ?>"
+         data-campaign-id="<?php echo esc_attr($cp['id']); ?>">
+      ...
+      <strong class="campaign-bar__prize"><?php echo esc_html($cp['prize']); ?></strong>
+      ...
+    </div>
+
+  キャンペーン日替わり切替は inc/shelikes-campaigns.php の SHELIKES_CAMPAIGNS_RAW を編集
+  ================================================================
+-->
+<div class="campaign-bar"
+     data-prize="iPad &amp; Apple Pencil"
+     data-deadline="2026-04-30T21:00:00+09:00"
+     data-campaign-id="ipad-pencil"
+     role="region" aria-label="開催中のキャンペーン">
+  <div class="campaign-bar__inner">
+    <span class="campaign-bar__label">
+      <strong class="campaign-bar__prize">iPad &amp; Apple Pencil</strong>が当たるWチャンス終了まで
+    </span>
+    <div class="campaign-bar__timer" aria-live="polite">
+      <span class="campaign-bar__cell"><b data-cdbar="d">--</b><i>日</i></span>
+      <span class="campaign-bar__cell"><b data-cdbar="h">--</b><i>時間</i></span>
+      <span class="campaign-bar__cell"><b data-cdbar="m">--</b><i>分</i></span>
+      <span class="campaign-bar__cell"><b data-cdbar="s">--</b><i>秒</i></span>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
   <div class="container">
     <div class="hero__inner">
-      <div class="reveal">
+      <div class="hero__visual reveal">
+        <span class="hero__visual-blob"></span>
+        <span class="hero__visual-blob hero__visual-blob--bottom"></span>
+        <div class="hero__video-frame">
+          <span class="hero__video-badge">LIVE 在宅で働く女性たち</span>
+          <video src="./assets/video/V-01-fv-zaitaku.mp4"
+                 autoplay loop muted playsinline preload="auto"
+                 poster="./assets/img/A-01.png"
+                 aria-label="在宅で働く受講生の様子"></video>
+          <div class="hero__video-caption">私たちの"新しい働き方"、ここから。</div>
+        </div>
+      </div>
+      <div class="hero__copy reveal">
         <span class="hero__pretitle">▶ 働く女性のためのキャリアスクール</span>
         <h1 class="hero__title">
           このまま今の仕事を続けて、<br>
@@ -593,18 +690,6 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           <div><strong>32,000+</strong>累計受講生</div>
           <div><strong>4.7/5.0</strong>満足度</div>
           <div><strong>78%</strong>3ヶ月で副業/転職</div>
-        </div>
-      </div>
-      <div class="hero__visual reveal">
-        <span class="hero__visual-blob"></span>
-        <span class="hero__visual-blob hero__visual-blob--bottom"></span>
-        <div class="hero__video-frame">
-          <span class="hero__video-badge">LIVE 在宅で働く女性たち</span>
-          <video src="./assets/video/V-01-fv-zaitaku.mp4"
-                 autoplay loop muted playsinline preload="auto"
-                 poster="./assets/img/A-01.png"
-                 aria-label="在宅で働く受講生の様子"></video>
-          <div class="hero__video-caption">私たちの“新しい働き方”、ここから。</div>
         </div>
       </div>
     </div>
@@ -986,7 +1071,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   <div class="container">
 
     <!-- カウントダウン -->
-    <div class="campaign__countdown reveal" data-deadline="2026-04-30T23:59:59+09:00">
+    <div class="campaign__countdown reveal" data-deadline="2026-04-30T21:00:00+09:00">
       <span class="campaign__countdown-label">⏰ <strong>豪華プレゼント Wチャンス</strong> 終了まで</span>
       <div class="campaign__countdown-timer" aria-live="polite">
         <span class="campaign__time"><b data-cd="d">--</b><i>日</i></span>
@@ -1096,32 +1181,46 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* キャンペーンのカウントダウン（data-deadline 属性で締切を制御） */
+/* キャンペーンカウントダウン（複数箇所対応 / data-deadline + data-{cd|cdbar} 属性ベース） */
 (function(){
-  const root = document.querySelector('.campaign__countdown');
-  if (!root) return;
-  const deadline = new Date(root.getAttribute('data-deadline')).getTime();
-  if (isNaN(deadline)) return;
-  const cells = {
-    d: root.querySelector('[data-cd="d"]'),
-    h: root.querySelector('[data-cd="h"]'),
-    m: root.querySelector('[data-cd="m"]'),
-    s: root.querySelector('[data-cd="s"]'),
-  };
   const pad = n => String(n).padStart(2, '0');
+  const targets = [
+    { root: document.querySelector('.campaign__countdown'),    attr: 'data-cd' },
+    { root: document.querySelector('.campaign-bar'),           attr: 'data-cdbar' },
+  ].filter(t => t.root);
+
+  if (!targets.length) return;
+
+  targets.forEach(t => {
+    const deadline = new Date(t.root.getAttribute('data-deadline')).getTime();
+    if (isNaN(deadline)) return;
+    t.deadline = deadline;
+    t.cells = {
+      d: t.root.querySelector(`[${t.attr}="d"]`),
+      h: t.root.querySelector(`[${t.attr}="h"]`),
+      m: t.root.querySelector(`[${t.attr}="m"]`),
+      s: t.root.querySelector(`[${t.attr}="s"]`),
+    };
+  });
+
   function tick(){
-    const diff = deadline - Date.now();
-    if (diff <= 0) {
-      cells.d.textContent = '00';
-      cells.h.textContent = '00';
-      cells.m.textContent = '00';
-      cells.s.textContent = '00';
-      return;
-    }
-    cells.d.textContent = pad(Math.floor(diff / 86400000));
-    cells.h.textContent = pad(Math.floor(diff / 3600000) % 24);
-    cells.m.textContent = pad(Math.floor(diff / 60000) % 60);
-    cells.s.textContent = pad(Math.floor(diff / 1000) % 60);
+    const now = Date.now();
+    targets.forEach(t => {
+      if (!t.cells) return;
+      const diff = t.deadline - now;
+      if (diff <= 0) {
+        t.cells.d.textContent = '00';
+        t.cells.h.textContent = '00';
+        t.cells.m.textContent = '00';
+        t.cells.s.textContent = '00';
+        if (t.root.classList.contains('campaign-bar')) t.root.classList.add('is-ended');
+        return;
+      }
+      t.cells.d.textContent = pad(Math.floor(diff / 86400000));
+      t.cells.h.textContent = pad(Math.floor(diff / 3600000) % 24);
+      t.cells.m.textContent = pad(Math.floor(diff / 60000) % 60);
+      t.cells.s.textContent = pad(Math.floor(diff / 1000) % 60);
+    });
   }
   tick();
   setInterval(tick, 1000);
