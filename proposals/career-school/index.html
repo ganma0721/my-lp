@@ -393,24 +393,27 @@ section{padding:88px 0}
 .benefit__title{font-size:clamp(1.3rem,2.2vw,1.65rem);font-weight:900;line-height:1.5;margin:0 0 16px}
 .benefit__desc{font-size:.98rem;color:var(--sub);margin:0;line-height:1.85}
 
-/* スキル 8グリッド */
+/* スキル（コース一覧画像で訴求） */
 .skills{background:#fff}
-.skills__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.skill-card{
-  background:var(--bg);border-radius:18px;padding:20px;text-align:center;
-  border:1px solid var(--line);
+.skills__lead{
+  text-align:center;font-size:1rem;color:var(--sub);
+  max-width:680px;margin:0 auto 40px;line-height:1.85;
 }
-.skill-card__img{
-  aspect-ratio:1;border-radius:12px;margin-bottom:14px;overflow:hidden;
-  background:var(--highlight);
+.skills__lead strong{
+  color:var(--ink);
+  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
 }
-.skill-card__img img{width:100%;height:100%;object-fit:cover}
-.skill-card__placeholder{
-  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  color:#aaa;font-size:.7rem;text-align:center;padding:8px;
-  border:1px dashed #c4b8a6;background:var(--highlight);
+.skills__visual{
+  max-width:920px;margin:0 auto;
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 24px 48px rgba(46,42,40,.10);
+  background:var(--bg);
 }
-.skill-card__name{font-weight:900;margin:0;font-size:1rem}
+.skills__visual img{width:100%;height:auto;display:block}
+.skills__note{
+  text-align:center;font-size:.78rem;color:var(--sub);
+  margin:24px 0 0;
+}
 
 /* ストーリー（縦に長い、画像主役） */
 .story{background:var(--bg)}
@@ -458,27 +461,18 @@ section{padding:88px 0}
 
 /* カリキュラム */
 .curriculum{background:var(--bg)}
-.curriculum__lead{
-  text-align:center;font-size:1rem;color:var(--sub);
-  max-width:680px;margin:0 auto 40px;line-height:1.85;
+.curriculum__steps{position:relative;max-width:760px;margin:0 auto;padding:0 16px}
+.curriculum__steps::before{
+  content:"";position:absolute;left:32px;top:32px;bottom:32px;width:2px;
+  background:var(--primary);
 }
-.curriculum__lead strong{
-  color:var(--ink);
-  background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 4px;
+.step{position:relative;padding:24px 0 24px 80px}
+.step__num{
+  position:absolute;left:0;top:24px;width:64px;height:64px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--primary);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem;z-index:1;
 }
-.curriculum__visual{
-  max-width:920px;margin:0 auto;
-  border-radius:24px;overflow:hidden;
-  box-shadow:0 24px 48px rgba(46,42,40,.10);
-  background:#fff;
-}
-.curriculum__visual img{
-  width:100%;height:auto;display:block;
-}
-.curriculum__note{
-  text-align:center;font-size:.78rem;color:var(--sub);
-  margin:24px 0 0;
-}
+.step__title{font-size:1.15rem;font-weight:900;margin:0 0 8px;line-height:1.5}
 
 /* 補助金 / SUBSIDY（旧 PRICING を置換） */
 .subsidy{
@@ -814,10 +808,12 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .empathy__heading{font-size:1.15rem}
   .empathy__bridge{font-size:.95rem;padding:24px}
   .voice__grid{grid-template-columns:1fr}
-  .skills__grid{grid-template-columns:repeat(2,1fr)}
   .voice-card{grid-template-columns:72px 1fr;gap:14px;padding:18px}
   .voice-card__photo{width:72px;height:72px}
-  .curriculum__visual{border-radius:18px}
+  .step{padding-left:64px}
+  .step__num{width:48px;height:48px;font-size:1rem}
+  .curriculum__steps::before{left:24px}
+  .skills__visual{border-radius:18px}
   .subsidy__hero{padding:28px 20px 22px}
   .subsidy__blocks{grid-template-columns:1fr;gap:14px;margin-bottom:24px}
   .subsidy-card{padding:22px 20px}
@@ -1073,46 +1069,23 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   </div>
 </section>
 
-<!-- 学べるスキル -->
+<!-- 学べるスキル（コース一覧画像で訴求） -->
 <section class="skills">
   <div class="container">
     <span class="section-eyebrow reveal">SKILLS</span>
     <h2 class="section-title reveal">在宅で「指名される人」になれる<br>50+スキル</h2>
+    <p class="skills__lead reveal">
+      Webデザイン・ライティング・動画編集・マーケティング…<br>
+      <strong>50+のコースから選び放題</strong>。「これかも」が必ず見つかります。
+    </p>
 
-    <div class="skills__grid">
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-01 Webマーケ)</div></div>
-        <h3 class="skill-card__name">Webマーケ</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><img src="./assets/img/E-02.png" alt="Webデザイン静物"></div>
-        <h3 class="skill-card__name">Webデザイン</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><img src="./assets/img/E-03.png" alt="SNS運用静物"></div>
-        <h3 class="skill-card__name">SNS運用</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-04 ライティング)</div></div>
-        <h3 class="skill-card__name">ライティング</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-05 動画編集)</div></div>
-        <h3 class="skill-card__name">動画編集</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-06 写真)</div></div>
-        <h3 class="skill-card__name">写真・映像</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-07 イラスト)</div></div>
-        <h3 class="skill-card__name">イラスト</h3>
-      </article>
-      <article class="skill-card reveal">
-        <div class="skill-card__img"><div class="skill-card__placeholder">画像予定<br>(E-08 他32コース)</div></div>
-        <h3 class="skill-card__name">他32コース</h3>
-      </article>
+    <div class="skills__visual reveal">
+      <img src="./assets/img/curriculum-courses.png"
+           alt="学べるコース一覧（UXデザイン / Webデザイン / Webマーケティング / ライター / 広報・PR / Pr動画編集 / Ae動画制作 / SNSマーケティング / 広告運用 / AIイラストレーター / カメラ・写真 / Webディレクター ほか）"
+           loading="lazy">
     </div>
+
+    <p class="skills__note reveal">※ 表示は一例です。受講開始後はすべてのコースを定額で受講可能です。</p>
   </div>
 </section>
 
@@ -1234,26 +1207,34 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   </div>
 </section>
 
-<!-- カリキュラム（学べるコース一覧 / 画像で訴求） -->
+<!-- カリキュラム（学習プロセス 4ステップ） -->
 <section class="curriculum">
   <div class="container">
     <span class="section-eyebrow reveal">CURRICULUM</span>
-    <h2 class="section-title reveal">
-      豊富なコースから、<br>
-      「<em>私らしい働き方</em>」を見つける
-    </h2>
-    <p class="curriculum__lead reveal">
-      Webデザイン・ライティング・動画編集・マーケティング…<br>
-      <strong>50+のコースから選び放題</strong>。「これかも」が必ず見つかります。
-    </p>
+    <h2 class="section-title reveal">「学んで終わり」にしない<br>4ステップの実戦カリキュラム</h2>
 
-    <div class="curriculum__visual reveal">
-      <img src="./assets/img/curriculum-courses.png"
-           alt="学べるコース一覧（UXデザイン / Webデザイン / Webマーケティング / ライター / 広報・PR / Pr動画編集 / Ae動画制作 / SNSマーケティング / 広告運用 / AIイラストレーター / カメラ・写真 / Webディレクター ほか）"
-           loading="lazy">
+    <div class="curriculum__steps">
+      <div class="step reveal">
+        <div class="step__num">1</div>
+        <h3 class="step__title">適性診断 + コース選定（1週間）</h3>
+        <p>専属コーチと一緒に、あなたの強み・ライフスタイル・目標から、最適なメインコースを選定。「やみくもに学ぶ」を防ぎます。</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">2</div>
+        <h3 class="step__title">基礎インプット（1〜2ヶ月）</h3>
+        <p>動画講座 + 課題提出 + コーチ添削で基礎を固めます。1日30分でも進められる、5〜10分の短尺動画設計。</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">3</div>
+        <h3 class="step__title">模擬案件で実戦練習（2〜3ヶ月）</h3>
+        <p>仮想クライアントの案件を解いてポートフォリオ化。コーチがプロ目線でレビュー。「納品できるレベル」まで仕上げます。</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">4</div>
+        <h3 class="step__title">案件獲得サポート（卒業まで）</h3>
+        <p>営業文の添削、提案書テンプレ、案件紹介プラットフォームへのアクセス。「初案件獲得まで」を伴走します。</p>
+      </div>
     </div>
-
-    <p class="curriculum__note reveal">※ 表示は一例です。受講開始後はすべてのコースを定額で受講可能です。</p>
   </div>
 </section>
 
