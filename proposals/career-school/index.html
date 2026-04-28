@@ -385,29 +385,126 @@ section{padding:88px 0}
 }
 .step__title{font-size:1.15rem;font-weight:900;margin:0 0 8px;line-height:1.5}
 
-/* 料金 */
-.pricing{background:linear-gradient(135deg,var(--highlight),#FFE9CD)}
-.pricing__card{
-  max-width:640px;margin:0 auto;background:#fff;
-  border-radius:24px;padding:48px;box-shadow:0 24px 48px rgba(46,42,40,.12);text-align:center;
+/* 補助金 / SUBSIDY（旧 PRICING を置換） */
+.subsidy{
+  background:linear-gradient(180deg,var(--highlight) 0%,#FFE9CD 100%);
+  position:relative;overflow:hidden;
 }
-.pricing__badge{
-  display:inline-block;background:var(--primary);color:#fff;padding:6px 18px;
-  border-radius:999px;font-size:.78rem;font-weight:700;margin-bottom:16px;letter-spacing:.06em;
+.subsidy::before,.subsidy::after{
+  content:"";position:absolute;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,228,163,.55) 0%,transparent 70%);
+  pointer-events:none;
 }
-.pricing__plan{font-size:1.3rem;font-weight:900;margin:0 0 8px}
-.pricing__price{font-size:2.8rem;font-weight:900;color:var(--primary);margin:0;letter-spacing:-.02em}
-.pricing__price small{font-size:.9rem;color:var(--sub);font-weight:400;display:block;margin-top:8px}
-.pricing__includes{text-align:left;margin:32px auto;max-width:380px;list-style:none;padding:0}
-.pricing__includes li{padding:10px 0 10px 36px;position:relative;border-bottom:1px solid var(--line);font-size:.95rem}
-.pricing__includes li::before{
-  content:"✓";position:absolute;left:0;top:10px;color:#fff;font-weight:900;
-  width:24px;height:24px;background:var(--primary);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:.85rem;
+.subsidy::before{top:-80px;left:-60px}
+.subsidy::after{bottom:-80px;right:-60px}
+
+.section-num{
+  display:inline-block;
+  background:var(--primary);color:#fff;
+  font-size:.78rem;font-weight:900;letter-spacing:.12em;
+  padding:4px 14px;border-radius:999px;
+  vertical-align:middle;margin-right:10px;
+  transform:translateY(-3px);
 }
-.pricing__guarantee{
-  margin-top:24px;padding:16px;background:var(--mark);border-radius:12px;
-  font-size:.9rem;font-weight:700;
+
+.subsidy__hero{
+  position:relative;z-index:1;
+  max-width:560px;margin:0 auto 48px;
+  background:#fff;border:3px solid var(--primary);border-radius:28px;
+  padding:32px 28px 28px;text-align:center;
+  box-shadow:0 24px 48px rgba(194,84,63,.18);
+}
+.subsidy__hero-tag{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  background:var(--primary);color:#fff;
+  padding:8px 28px;border-radius:999px;
+  font-weight:900;font-size:.92rem;letter-spacing:.08em;white-space:nowrap;
+  box-shadow:0 8px 18px rgba(194,84,63,.32);
+}
+.subsidy__hero-label{
+  font-size:1rem;font-weight:700;color:var(--ink);margin:0;
+}
+.subsidy__hero-amount{
+  display:flex;justify-content:center;align-items:baseline;gap:8px;
+  margin:6px 0 0;
+}
+.subsidy__hero-amount .max{
+  font-size:1rem;font-weight:900;color:var(--ink);
+  align-self:center;line-height:1;
+}
+.subsidy__hero-amount .pct{
+  font-size:clamp(3.5rem,9vw,5.5rem);
+  font-weight:900;color:var(--primary);line-height:.9;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+}
+.subsidy__hero-amount .sym{
+  font-size:1.8rem;font-weight:900;color:var(--primary);
+}
+.subsidy__hero-tail{
+  font-size:1.3rem;font-weight:900;color:var(--ink);margin:0;letter-spacing:.04em;
+}
+.subsidy__hero-note{
+  font-size:.78rem;color:var(--sub);margin:10px 0 0;
+}
+
+.subsidy__blocks{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin:0 0 32px;
+}
+.subsidy-card{
+  background:#fff;border-radius:20px;padding:28px 24px;
+  border:1px solid var(--line);
+  box-shadow:0 12px 28px rgba(46,42,40,.06);
+  display:flex;flex-direction:column;gap:10px;
+}
+.subsidy-card__num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  font-size:1rem;font-weight:900;
+}
+.subsidy-card__title{
+  font-size:1.05rem;font-weight:900;line-height:1.55;margin:0;color:var(--ink);
+}
+.subsidy-card__body{
+  font-size:.92rem;line-height:1.85;color:var(--sub);margin:0;
+}
+.subsidy-card__body strong{color:var(--ink);background:linear-gradient(transparent 60%,var(--mark) 60%);padding:0 2px}
+.subsidy-card__body small{display:block;margin-top:8px;font-size:.78rem;color:var(--sub)}
+
+.subsidy__services{
+  position:relative;z-index:1;
+  background:#fff;border-radius:24px;padding:36px 32px;
+  margin:0 0 32px;
+  box-shadow:0 16px 32px rgba(46,42,40,.08);
+}
+.subsidy__services-title{
+  text-align:center;font-size:1.15rem;font-weight:900;
+  margin:0 0 8px;color:var(--ink);
+}
+.subsidy__services-sub{
+  text-align:center;font-size:.85rem;color:var(--sub);margin:0 0 24px;
+}
+.subsidy__services-list{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  list-style:none;padding:0;margin:0;
+}
+.subsidy__services-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.92rem;line-height:1.5;font-weight:600;
+  padding:12px 14px;background:var(--bg);border-radius:10px;
+}
+.subsidy__services-list li::before{
+  content:"✓";flex-shrink:0;
+  width:22px;height:22px;background:var(--primary);color:#fff;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:900;
+}
+
+.subsidy__cta{position:relative;z-index:1;text-align:center}
+.subsidy__cta-note{
+  margin:12px 0 0;font-size:.82rem;color:var(--sub);
 }
 
 /* FAQ */
@@ -619,8 +716,12 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   .step{padding-left:64px}
   .step__num{width:48px;height:48px;font-size:1rem}
   .curriculum__steps::before{left:24px}
-  .pricing__card{padding:32px 20px}
-  .pricing__price{font-size:2.2rem}
+  .subsidy__hero{padding:28px 20px 22px}
+  .subsidy__blocks{grid-template-columns:1fr;gap:14px;margin-bottom:24px}
+  .subsidy-card{padding:22px 20px}
+  .subsidy__services{padding:24px 20px}
+  .subsidy__services-list{grid-template-columns:1fr;gap:8px}
+  .section-num{font-size:.7rem;padding:3px 10px;margin-right:6px}
   .final-cta{padding:80px 0}
 
   .campaign{padding:56px 0 72px}
@@ -710,7 +811,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
           出会う<em>45分</em>。
         </h1>
         <p class="hero__lead">
-          Webデザイン・動画編集・ライティングなど40+のスキル。<br>
+          Webデザイン・動画編集・ライティングなど50のスキル。<br>
           気になる1つを、無料体験レッスンで試してみる。<br>
           スマホ参加OK・勧誘なし。
         </p>
@@ -785,11 +886,11 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 
     <div class="benefit__row">
       <div class="benefit__visual reveal">
-        <img src="./assets/img/D-01.png" alt="40+のスキルを象徴する静物" loading="lazy">
+        <img src="./assets/img/D-01.png" alt="50のスキルを象徴する静物" loading="lazy">
       </div>
       <div class="reveal">
         <span class="benefit__num">REASON 01</span>
-        <h3 class="benefit__title">40+のスキルが、月額固定で受け放題</h3>
+        <h3 class="benefit__title">50のスキルが、月額固定で受け放題</h3>
         <p class="benefit__desc">Webデザイン・ライティング・マーケ・動画編集・SNS運用 ── やりたい複数のコースを「先に試して、合うものを選ぶ」がこのスクールの常識。「自分に何が合うか分からない」を最初の壁にしません。</p>
       </div>
     </div>
@@ -822,7 +923,7 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
 <section class="skills">
   <div class="container">
     <span class="section-eyebrow reveal">SKILLS</span>
-    <h2 class="section-title reveal">在宅で「指名される人」になれる<br>40+ のスキル</h2>
+    <h2 class="section-title reveal">在宅で「指名される人」になれる<br>50 のスキル</h2>
 
     <div class="skills__grid">
       <article class="skill-card reveal">
@@ -1018,34 +1119,76 @@ footer a{color:#fff;text-decoration:underline;margin:0 12px}
   </div>
 </section>
 
-<!-- 料金 -->
-<section class="pricing">
+<!-- 補助金情報 -->
+<section class="subsidy" id="subsidy">
   <div class="container">
-    <span class="section-eyebrow reveal">PRICING</span>
-    <h2 class="section-title reveal">毎月のスマホ代より、<br>ちょっと多いくらい。</h2>
+    <span class="section-eyebrow reveal">SUBSIDY</span>
+    <h2 class="section-title reveal">
+      <span class="section-num">03</span>今だけ！お得に受講できる<br>
+      補助金情報をご紹介！
+    </h2>
 
-    <div class="pricing__card reveal">
-      <span class="pricing__badge">⭐ 一番人気</span>
-      <h3 class="pricing__plan">スタンダードプラン（6ヶ月）</h3>
-      <p class="pricing__price">
-        16,280<span style="font-size:1rem">円/月</span>
-        <small>(税込・分割払い時 / 補助金70%還元対象)</small>
-      </p>
+    <!-- 70% 還元 ヒーローカード -->
+    <div class="subsidy__hero reveal">
+      <span class="subsidy__hero-tag">先着順！</span>
+      <p class="subsidy__hero-label">受講料</p>
+      <div class="subsidy__hero-amount">
+        <span class="max">最大</span>
+        <span class="pct">70</span>
+        <span class="sym">%</span>
+      </div>
+      <p class="subsidy__hero-tail">還元</p>
+      <p class="subsidy__hero-note">※適用条件あり</p>
+    </div>
 
-      <ul class="pricing__includes">
-        <li>40+コース完全受け放題</li>
-        <li>月1回の専属コーチング</li>
-        <li>無制限の課題添削</li>
-        <li>受講生コミュニティへのアクセス</li>
-        <li>案件獲得サポート（卒業後3ヶ月）</li>
-        <li>ポートフォリオレビュー回数無制限</li>
-      </ul>
-
-      <div class="pricing__guarantee">
-        💚 入会後14日間以内なら全額返金保証
+    <!-- 3ブロック説明 -->
+    <div class="subsidy__blocks">
+      <div class="subsidy-card reveal">
+        <span class="subsidy-card__num">1</span>
+        <h3 class="subsidy-card__title">経済産業省<br>キャリアアップ支援事業対象</h3>
+        <p class="subsidy-card__body">
+          SHElikesは<strong>「リスキリングを通じたキャリアアップ支援事業」</strong>（経済産業省）の対象スクール。受講料（税抜）の<strong>最大70%が補助金として支給</strong>されます。在職者で転職を目指す方なら、正社員・契約・派遣・パート・アルバイトまで幅広く利用可能。
+        </p>
       </div>
 
-      <p style="margin-top:24px"><a href="#cta" class="btn btn--primary btn--lg">まずは無料説明会で相談する</a></p>
+      <div class="subsidy-card reveal">
+        <span class="subsidy-card__num">2</span>
+        <h3 class="subsidy-card__title">体験当日入会で<br>すぐに50%還元</h3>
+        <p class="subsidy-card__body">
+          レギュラープランは<strong>体験レッスン当日の入会で、受講料の50%（約20万円相当）が即時補助金還元</strong>。他校は修了後キャッシュバック方式が一般的ですが、SHElikesは最初から補助金が適用されるため安心して受講開始できます。
+        </p>
+      </div>
+
+      <div class="subsidy-card reveal">
+        <span class="subsidy-card__num">3</span>
+        <h3 class="subsidy-card__title">転職後1年継続で<br>追加20%支給</h3>
+        <p class="subsidy-card__body">
+          転職後、1年間継続就業で<strong>追加の20%相当額（上限79,600円）</strong>が支給。1.+ 2.+ 3.で合計<strong>最大70%の補助</strong>が還元されます。
+          <small>※継続就業の補助金には一定の条件があります。詳細は無料体験レッスンにて。</small>
+        </p>
+      </div>
+    </div>
+
+    <!-- 提供サービス -->
+    <div class="subsidy__services reveal">
+      <h3 class="subsidy__services-title">レギュラープランの提供サービス</h3>
+      <p class="subsidy__services-sub">キャリア相談・リスキリング・転職支援を一貫してサポート</p>
+      <ul class="subsidy__services-list">
+        <li>レッスン受け放題</li>
+        <li>講師に質問できる会</li>
+        <li>プロによる課題の添削</li>
+        <li>お仕事チャレンジの機会</li>
+        <li>特別イベントへの参加</li>
+        <li>デザイン質問 24時間対応</li>
+        <li>キャリアカウンセラー1on1</li>
+        <li>未経験キャリアチェンジ特化プログラム</li>
+        <li>履歴書・職務経歴書・面接対策</li>
+      </ul>
+    </div>
+
+    <div class="subsidy__cta reveal">
+      <a href="#cta" class="btn btn--primary btn--lg">無料体験レッスンで詳しく聞く</a>
+      <p class="subsidy__cta-note">※補助金の適用可否は無料体験レッスン内で個別に確認できます</p>
     </div>
   </div>
 </section>
